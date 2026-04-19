@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { watermarkTimeFormatOptions } from '@/constants/app';
+import { SYSTEM_TITLE } from '@/constants/system';
 import { useThemeStore } from '@/store/modules/theme';
 import { $t } from '@/locales';
 import SettingItem from '../../../components/setting-item.vue';
@@ -47,7 +48,7 @@ const isWatermarkTextVisible = computed(
         type="text"
         size="small"
         class="w-120px"
-        placeholder="SoybeanAdmin"
+        :placeholder="SYSTEM_TITLE"
       />
     </SettingItem>
   </TransitionGroup>

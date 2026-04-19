@@ -1,9 +1,9 @@
 // @unocss-include
 import { getColorPalette, getRgb } from '@sa/color';
 import { DARK_CLASS } from '@/constants/app';
+import { SYSTEM_TITLE } from '@/constants/system';
 import { localStg } from '@/utils/storage';
 import { toggleHtmlClass } from '@/utils/common';
-import { $t } from '@/locales';
 
 export function setupLoading() {
   const themeColor = localStg.get('themeColor') || '#646cff';
@@ -47,7 +47,7 @@ export function setupLoading() {
       ${dot}
     </div>
   </div>
-  <h2 class="text-28px font-500 text-primary">${$t('system.title')}</h2>
+  <h2 class="text-28px font-500 text-primary">${SYSTEM_TITLE}</h2>
 </div>`;
 
   const app = document.getElementById('app');

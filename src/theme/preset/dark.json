@@ -61,7 +61,7 @@
   },
   "watermark": {
     "visible": false,
-    "text": "SoybeanAdmin",
+    "text": "金骏渠道管理系统",
     "enableUserName": false,
     "enableTime": false,
     "timeFormat": "YYYY-MM-DD HH:mm"

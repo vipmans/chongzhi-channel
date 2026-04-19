@@ -1,3 +1,5 @@
+import { SYSTEM_TITLE } from '@/constants/system';
+
 /** Default theme settings */
 export const themeSettings: App.Theme.ThemeSetting = {
   themeScheme: 'light',
@@ -59,7 +61,7 @@ export const themeSettings: App.Theme.ThemeSetting = {
   },
   watermark: {
     visible: false,
-    text: 'SoybeanAdmin',
+    text: SYSTEM_TITLE,
     enableUserName: false,
     enableTime: false,
     timeFormat: 'YYYY-MM-DD HH:mm'
