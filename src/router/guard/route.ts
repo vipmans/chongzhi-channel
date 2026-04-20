@@ -22,6 +22,7 @@ export function createRouteGuard(router: Router) {
 
     const rootRoute: RouteKey = 'root';
     const loginRoute: RouteKey = 'login';
+    const portalRoute: RouteKey = 'portal';
     const noAuthorizationRoute: RouteKey = '403';
 
     const isLogin = Boolean(localStg.get('token'));
@@ -31,8 +32,13 @@ export function createRouteGuard(router: Router) {
     const hasRole = authStore.userInfo.roles.some(role => routeRoles.includes(role));
     const hasAuth = authStore.isStaticSuper || !routeRoles.length || hasRole;
 
+    // redirect the legacy admin login page to the channel portal
+    if (to.name === loginRoute) {
+      return { name: portalRoute };
+    }
+
     // if it is login route when logged in, then switch to the root page
-    if (to.name === loginRoute && isLogin) {
+    if (to.name === portalRoute && isLogin) {
       return { name: rootRoute };
     }
 
@@ -41,9 +47,9 @@ export function createRouteGuard(router: Router) {
       return handleRouteSwitch(to, from);
     }
 
-    // the route need login but the user is not logged in, then switch to the login page
+    // the route need login but the user is not logged in, then switch to the channel portal
     if (!isLogin) {
-      return { name: loginRoute, query: { redirect: to.fullPath } };
+      return { name: portalRoute, query: { redirect: to.fullPath } };
     }
 
     // if the user is logged in but does not have authorization, then switch to the 403 page
@@ -94,8 +100,8 @@ async function initRoute(to: RouteLocationNormalized): Promise<RouteLocationRaw 
       return null;
     }
 
-    // if the user is not logged in, then switch to the login page
-    const loginRoute: RouteKey = 'login';
+    // if the user is not logged in, then switch to the channel portal
+    const loginRoute: RouteKey = 'portal';
     const query = getRouteQueryOfLoginRoute(to, routeStore.routeHome);
 
     const location: RouteLocationRaw = {
