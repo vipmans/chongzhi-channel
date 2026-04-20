@@ -24,6 +24,8 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   const userInfo: Api.Auth.UserInfo = reactive({
     userId: '',
     userName: '',
+    displayName: '',
+    status: '',
     roles: [],
     buttons: []
   });
@@ -130,14 +132,14 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
 
   async function loginByToken(loginToken: Api.Auth.LoginToken) {
     // 1. stored in the localStorage, the later requests need it in headers
-    localStg.set('token', loginToken.token);
+    localStg.set('token', loginToken.accessToken);
     localStg.set('refreshToken', loginToken.refreshToken);
 
     // 2. get user info
     const pass = await getUserInfo();
 
     if (pass) {
-      token.value = loginToken.token;
+      token.value = loginToken.accessToken;
 
       return true;
     }
@@ -149,8 +151,16 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     const { data: info, error } = await fetchGetUserInfo();
 
     if (!error) {
-      // update store
-      Object.assign(userInfo, info);
+      const nextUserInfo: Api.Auth.UserInfo = {
+        userId: info.id,
+        userName: info.username,
+        displayName: info.displayName,
+        status: info.status,
+        roles: info.roleCodes,
+        buttons: info.permissions || []
+      };
+
+      Object.assign(userInfo, nextUserInfo);
 
       return true;
     }

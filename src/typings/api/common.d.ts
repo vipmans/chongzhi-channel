@@ -5,6 +5,29 @@
  */
 declare namespace Api {
   namespace Common {
+    interface PagedData<T> {
+      records: T[];
+      pageNum: number;
+      pageSize: number;
+      total: number;
+      totalPages: number;
+    }
+
+    interface Operator {
+      userId: string;
+      username: string;
+      displayName: string;
+    }
+
+    interface OperationResult {
+      resourceId: string;
+      resourceType: string;
+      status: string;
+      operatedAt: string;
+      operator: Operator;
+      remark: string | null;
+    }
+
     /** common params of paginating */
     interface PaginatingCommonParams {
       /** current page number */

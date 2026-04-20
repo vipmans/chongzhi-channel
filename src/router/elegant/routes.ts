@@ -40,6 +40,17 @@ export const generatedRoutes: GeneratedRoute[] = [
     }
   },
   {
+    name: 'channels',
+    path: '/channels',
+    component: 'layout.base$view.channels',
+    meta: {
+      title: '渠道管理',
+      icon: 'mdi:account-network-outline',
+      order: 2,
+      i18nKey: 'route.channels'
+    }
+  },
+  {
     name: 'home',
     path: '/home',
     component: 'layout.base$view.home',
@@ -73,6 +84,17 @@ export const generatedRoutes: GeneratedRoute[] = [
       i18nKey: 'route.login',
       constant: true,
       hideInMenu: true
+    }
+  },
+  {
+    name: 'suppliers',
+    path: '/suppliers',
+    component: 'layout.base$view.suppliers',
+    meta: {
+      title: '供应商管理',
+      icon: 'mdi:truck-delivery-outline',
+      order: 3,
+      i18nKey: 'route.suppliers'
     }
   }
 ];

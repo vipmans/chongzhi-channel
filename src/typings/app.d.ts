@@ -479,7 +479,7 @@ declare namespace App {
           resetSuccessMsg: string;
         };
       };
-      route: Record<I18nRouteKey, string>;
+      route: Record<string, string>;
       page: {
         login: {
           common: {
@@ -640,11 +640,15 @@ declare namespace App {
     /** The backend service response data */
     type Response<T = unknown> = {
       /** The backend service response code */
-      code: string;
+      code: string | number;
       /** The backend service response message */
-      msg: string;
+      msg?: string;
+      /** The backend service response message */
+      message?: string;
       /** The backend service response data */
       data: T;
+      /** troubleshooting request id */
+      requestId?: string;
     };
 
     /** The demo backend service response data */
