@@ -82,6 +82,11 @@ const bgColor = computed(() => {
               <component :is="activeModule.component" />
             </Transition>
           </div>
+          <div class="pt-20px text-center">
+            <RouterLink to="/portal" class="text-14px text-primary transition hover:opacity-80">
+              进入渠道门户
+            </RouterLink>
+          </div>
         </main>
       </div>
     </NCard>

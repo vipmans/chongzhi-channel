@@ -87,6 +87,17 @@ export const generatedRoutes: GeneratedRoute[] = [
     }
   },
   {
+    name: 'portal',
+    path: '/portal',
+    component: 'layout.blank$view.portal',
+    meta: {
+      title: 'portal',
+      i18nKey: 'route.portal',
+      constant: true,
+      hideInMenu: true
+    }
+  },
+  {
     name: 'suppliers',
     path: '/suppliers',
     component: 'layout.base$view.suppliers',
