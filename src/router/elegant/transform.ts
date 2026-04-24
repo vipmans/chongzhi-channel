@@ -171,6 +171,14 @@ const routeMap: RouteMap = {
   "iframe-page": "/iframe-page/:url",
   "login": "/login/:module(pwd-login|code-login|register|reset-pwd|bind-wechat)?",
   "portal": "/portal",
+  "portal_batch": "/portal/batch",
+  "portal_events": "/portal/events",
+  "portal_orders": "/portal/orders",
+  "portal_overview": "/portal/overview",
+  "portal_products": "/portal/products",
+  "portal_recharges": "/portal/recharges",
+  "portal_single": "/portal/single",
+  "portal-login": "/portal-login",
   "suppliers": "/suppliers"
 };
 

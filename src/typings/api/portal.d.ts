@@ -34,6 +34,29 @@ declare namespace Api {
       limitRule: ChannelQuotaRule | null;
     }
 
+    interface AdminProductQueryParams {
+      pageNum: number;
+      pageSize: number;
+      keyword?: string;
+      status?: string;
+      sortBy?: string;
+      sortOrder?: SortOrder;
+      carrierCode?: CarrierCode;
+      productType?: ProductType | '';
+    }
+
+    interface AdminProductItem {
+      id: string;
+      productCode: string;
+      productName: string;
+      carrierCode: CarrierCode;
+      provinceName: string;
+      faceValueAmountFen: number;
+      productType: ProductType;
+      salesUnit: string;
+      status: string;
+    }
+
     interface ProductQueryParams {
       carrierCode?: CarrierCode;
       province?: string;
@@ -42,7 +65,7 @@ declare namespace Api {
       status?: string;
     }
 
-    interface ProductItem {
+    interface OpenProductItem {
       productId: string;
       productName: string;
       faceValueFen: number;
@@ -63,19 +86,47 @@ declare namespace Api {
       ext?: Record<string, unknown>;
     }
 
-    interface BatchOrderItem {
-      channelOrderNo: string;
+    interface OrderPreviewForm {
       mobile: string;
       faceValue: number;
       productType?: ProductType;
-      ext?: Record<string, unknown>;
     }
 
-    interface BatchCreateOrderForm {
-      orders: BatchOrderItem[];
+    interface OrderPreviewPiece {
+      productId: string;
+      productName: string;
+      supplierId: string;
+      supplierName: string;
+      faceValueAmountFen: number;
+      saleAmountFen: number;
+      purchaseAmountFen: number;
     }
 
-    type OrderMutationResult = Record<string, unknown>;
+    interface OrderPreviewResult {
+      matched: boolean;
+      unmatchedReason: string | null;
+      usedSplit: boolean;
+      supplierId: string | null;
+      mobile: string;
+      province: string | null;
+      ispName: string | null;
+      pieces: OrderPreviewPiece[];
+    }
+
+    interface CustomerLookupItem {
+      mobile: string;
+      province: string | null;
+      ispName: string | null;
+    }
+
+    interface CustomerDetail {
+      basicInfo?: CustomerLookupItem | null;
+      mobile?: string;
+      province?: string | null;
+      ispName?: string | null;
+    }
+
+    type CustomerDetailResult = Api.Common.PagedData<CustomerLookupItem> | CustomerDetail;
 
     interface OrderQueryParams {
       pageNum: number;
@@ -93,22 +144,19 @@ declare namespace Api {
     interface OrderItem {
       orderNo: string;
       channelOrderNo: string;
-      channelId: string;
-      productId: string | null;
       mobile: string;
       province: string | null;
       ispName: string | null;
-      requestedProductType: string;
-      faceValueAmountFen: number;
-      saleAmountFen: number;
-      purchaseAmountFen: number;
+      faceValue: number;
+      matchedProductId: string | null;
+      salePrice: number;
       currency: string;
       mainStatus: string;
       supplierStatus: string;
       notifyStatus: string;
       refundStatus: string;
-      monitorStatus: string;
-      exceptionTag: string | null;
+      requestedProductType: ProductType | string;
+      extJson: Record<string, unknown>;
       createdAt: string;
       updatedAt: string;
       finishedAt: string | null;
@@ -124,16 +172,16 @@ declare namespace Api {
     }
 
     interface OrderEvent {
-      id: string;
-      orderNo: string;
       eventType: string;
-      sourceService: string;
       sourceNo: string | null;
-      beforeStatus: Record<string, unknown>;
-      afterStatus: Record<string, unknown>;
-      payload: Record<string, unknown>;
-      operator: string;
+      beforeStatusJson: Record<string, unknown>;
+      afterStatusJson: Record<string, unknown>;
       occurredAt: string;
+    }
+
+    interface BatchTemplate {
+      fileName: string;
+      content: string;
     }
   }
 }

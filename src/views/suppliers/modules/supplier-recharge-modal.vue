@@ -196,7 +196,7 @@ function resetForm() {
               v-model:value="model.rawPayloadText"
               type="textarea"
               :rows="6"
-              placeholder="可选，输入 JSON，例如 {&quot;source&quot;:&quot;manual&quot;}"
+              placeholder='可选，输入 JSON，例如 {"source":"manual"}'
             />
           </NFormItem>
         </NGi>

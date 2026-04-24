@@ -181,17 +181,17 @@ function sanitizeChannelForm(form: Api.Channel.EntityForm): Api.Channel.EntityFo
           </NFormItem>
         </NGi>
         <NGi>
-          <NFormItem label="接入账号" path="accessAccount">
-            <NInput v-model:value="model.accessAccount" placeholder="请输入接入账号" />
+          <NFormItem label="门户登录账号" path="accessAccount">
+            <NInput v-model:value="model.accessAccount" placeholder="请输入门户登录账号" />
           </NFormItem>
         </NGi>
         <NGi>
-          <NFormItem label="接入密码" path="accessPassword">
+          <NFormItem label="门户登录密码" path="accessPassword">
             <NInput
               v-model:value="model.accessPassword"
               type="password"
               show-password-on="click"
-              placeholder="请输入接入密码"
+              placeholder="请输入门户登录密码"
             />
           </NFormItem>
         </NGi>

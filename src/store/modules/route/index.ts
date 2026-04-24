@@ -328,6 +328,7 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
   return {
     resetStore,
     routeHome,
+    setRouteHome,
     menus,
     searchMenus,
     updateGlobalMenusByLocale,

@@ -231,6 +231,13 @@ const local: App.I18n.Schema = {
     'iframe-page': 'Iframe',
     home: 'Home',
     portal: 'Channel Portal',
+    portal_overview: 'Overview',
+    portal_single: 'Single Recharge',
+    portal_batch: 'Batch Recharge',
+    portal_products: 'Product List',
+    portal_orders: 'Consumption Records',
+    portal_events: 'Consumption Logs',
+    portal_recharges: 'Recharge Logs',
     channels: 'Channels',
     suppliers: 'Suppliers'
   },

@@ -47,7 +47,8 @@ export const generatedRoutes: GeneratedRoute[] = [
       title: '渠道管理',
       icon: 'mdi:account-network-outline',
       order: 2,
-      i18nKey: 'route.channels'
+      i18nKey: 'route.channels',
+      hideInMenu: true
     }
   },
   {
@@ -58,7 +59,8 @@ export const generatedRoutes: GeneratedRoute[] = [
       title: 'home',
       i18nKey: 'route.home',
       icon: 'mdi:monitor-dashboard',
-      order: 1
+      order: 1,
+      hideInMenu: true
     }
   },
   {
@@ -89,12 +91,103 @@ export const generatedRoutes: GeneratedRoute[] = [
   {
     name: 'portal',
     path: '/portal',
-    component: 'layout.blank$view.portal',
+    component: 'layout.base' as any,
     meta: {
-      title: 'portal',
-      i18nKey: 'route.portal',
+      title: '渠道门户',
       constant: true,
-      hideInMenu: true
+      icon: 'mdi:storefront-outline',
+      order: 1,
+      i18nKey: 'route.portal'
+    },
+    children: [
+      {
+        name: 'portal_batch',
+        path: '/portal/batch',
+        component: 'view.portal_batch',
+        meta: {
+          title: '批量充值',
+          constant: true,
+          order: 3,
+          i18nKey: 'route.portal_batch'
+        }
+      },
+      {
+        name: 'portal_events',
+        path: '/portal/events',
+        component: 'view.portal_events',
+        meta: {
+          title: '消费日志',
+          constant: true,
+          order: 6,
+          i18nKey: 'route.portal_events'
+        }
+      },
+      {
+        name: 'portal_orders',
+        path: '/portal/orders',
+        component: 'view.portal_orders',
+        meta: {
+          title: '消费记录',
+          constant: true,
+          order: 5,
+          i18nKey: 'route.portal_orders'
+        }
+      },
+      {
+        name: 'portal_overview',
+        path: '/portal/overview',
+        component: 'view.portal_overview',
+        meta: {
+          title: '概览',
+          constant: true,
+          order: 1,
+          i18nKey: 'route.portal_overview'
+        }
+      },
+      {
+        name: 'portal_products',
+        path: '/portal/products',
+        component: 'view.portal_products',
+        meta: {
+          title: '商品列表',
+          constant: true,
+          order: 4,
+          i18nKey: 'route.portal_products'
+        }
+      },
+      {
+        name: 'portal_recharges',
+        path: '/portal/recharges',
+        component: 'view.portal_recharges',
+        meta: {
+          title: '充值日志',
+          constant: true,
+          order: 7,
+          i18nKey: 'route.portal_recharges'
+        }
+      },
+      {
+        name: 'portal_single',
+        path: '/portal/single',
+        component: 'view.portal_single',
+        meta: {
+          title: '单笔充值',
+          constant: true,
+          order: 2,
+          i18nKey: 'route.portal_single'
+        }
+      }
+    ]
+  } as any,
+  {
+    name: 'portal-login',
+    path: '/portal-login',
+    component: 'layout.blank$view.portal-login',
+    meta: {
+      title: '渠道登录',
+      constant: true,
+      hideInMenu: true,
+      i18nKey: 'route.portal-login'
     }
   },
   {
@@ -105,7 +198,8 @@ export const generatedRoutes: GeneratedRoute[] = [
       title: '供应商管理',
       icon: 'mdi:truck-delivery-outline',
       order: 3,
-      i18nKey: 'route.suppliers'
+      i18nKey: 'route.suppliers',
+      hideInMenu: true
     }
   }
 ];

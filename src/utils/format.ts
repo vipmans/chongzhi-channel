@@ -16,7 +16,7 @@ export function formatFen(value?: number | null, currency = 'CNY') {
   const amount = (value / 100).toFixed(2);
 
   if (currency === 'CNY') {
-    return `￥${amount}`;
+    return `CNY ${amount}`;
   }
 
   return `${amount} ${currency}`;

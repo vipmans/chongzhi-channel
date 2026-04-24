@@ -424,10 +424,10 @@ function cleanQuery<T extends Record<string, unknown>>(query: T) {
                   <NDescriptionsItem label="接口地址" :span="2">
                     {{ renderNullable(selectedChannel?.baseUrl) }}
                   </NDescriptionsItem>
-                  <NDescriptionsItem label="接入账号">
+                  <NDescriptionsItem label="门户登录账号">
                     {{ renderNullable(selectedChannel?.accessAccount) }}
                   </NDescriptionsItem>
-                  <NDescriptionsItem label="接入密码">
+                  <NDescriptionsItem label="门户登录密码">
                     {{ renderNullable(selectedChannel?.accessPassword) }}
                   </NDescriptionsItem>
                   <NDescriptionsItem label="合作状态">

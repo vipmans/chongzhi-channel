@@ -25,6 +25,14 @@ declare module "@elegant-router/types" {
     "iframe-page": "/iframe-page/:url";
     "login": "/login/:module(pwd-login|code-login|register|reset-pwd|bind-wechat)?";
     "portal": "/portal";
+    "portal_batch": "/portal/batch";
+    "portal_events": "/portal/events";
+    "portal_orders": "/portal/orders";
+    "portal_overview": "/portal/overview";
+    "portal_products": "/portal/products";
+    "portal_recharges": "/portal/recharges";
+    "portal_single": "/portal/single";
+    "portal-login": "/portal-login";
     "suppliers": "/suppliers";
   };
 
@@ -65,6 +73,7 @@ declare module "@elegant-router/types" {
     | "iframe-page"
     | "login"
     | "portal"
+    | "portal-login"
     | "suppliers"
   >;
 
@@ -89,7 +98,15 @@ declare module "@elegant-router/types" {
     | "login"
     | "channels"
     | "home"
+    | "portal-login"
+    | "portal_batch"
+    | "portal_events"
     | "portal"
+    | "portal_orders"
+    | "portal_overview"
+    | "portal_products"
+    | "portal_recharges"
+    | "portal_single"
     | "suppliers"
   >;
 

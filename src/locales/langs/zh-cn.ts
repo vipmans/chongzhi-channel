@@ -226,7 +226,14 @@ const local: App.I18n.Schema = {
     500: '服务器错误',
     'iframe-page': '外链页面',
     home: '首页',
-    portal: '渠道门户'
+    portal: '渠道门户',
+    portal_overview: '概览',
+    portal_single: '单笔充值',
+    portal_batch: '批量充值',
+    portal_products: '商品列表',
+    portal_orders: '消费记录',
+    portal_events: '消费日志',
+    portal_recharges: '充值日志'
   },
   page: {
     login: {

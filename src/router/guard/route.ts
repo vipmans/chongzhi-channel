@@ -20,26 +20,33 @@ export function createRouteGuard(router: Router) {
 
     const authStore = useAuthStore();
 
-    const rootRoute: RouteKey = 'root';
     const loginRoute: RouteKey = 'login';
+    const portalLoginRoute: RouteKey = 'portal-login';
     const portalRoute: RouteKey = 'portal';
+    const portalHomeRoute: RouteKey = 'portal_overview';
     const noAuthorizationRoute: RouteKey = '403';
 
     const isLogin = Boolean(localStg.get('token'));
+    const hasPortalAuth = Boolean(localStg.get('portalToken'));
     const needLogin = !to.meta.constant;
     const routeRoles = to.meta.roles || [];
 
     const hasRole = authStore.userInfo.roles.some(role => routeRoles.includes(role));
     const hasAuth = authStore.isStaticSuper || !routeRoles.length || hasRole;
 
+    const isPortalPage = to.path.startsWith('/portal') && to.name !== portalLoginRoute;
+
     // redirect the legacy admin login page to the channel portal
     if (to.name === loginRoute) {
-      return { name: portalRoute };
+      return { name: portalLoginRoute };
     }
 
-    // if it is login route when logged in, then switch to the root page
-    if (to.name === portalRoute && isLogin) {
-      return { name: rootRoute };
+    if (to.name === portalLoginRoute && hasPortalAuth) {
+      return { name: portalHomeRoute };
+    }
+
+    if ((to.name === portalRoute || isPortalPage) && !hasPortalAuth) {
+      return { name: portalLoginRoute, query: { redirect: to.fullPath } };
     }
 
     // if the route does not need login, then it is allowed to access directly
@@ -49,7 +56,7 @@ export function createRouteGuard(router: Router) {
 
     // the route need login but the user is not logged in, then switch to the channel portal
     if (!isLogin) {
-      return { name: portalRoute, query: { redirect: to.fullPath } };
+      return { name: portalLoginRoute, query: { redirect: to.fullPath } };
     }
 
     // if the user is logged in but does not have authorization, then switch to the 403 page
@@ -69,6 +76,10 @@ export function createRouteGuard(router: Router) {
  */
 async function initRoute(to: RouteLocationNormalized): Promise<RouteLocationRaw | null> {
   const routeStore = useRouteStore();
+  const isAdminLogin = Boolean(localStg.get('token'));
+  const isPortalAccess = to.name === 'portal' || to.name === 'portal-login' || to.path.startsWith('/portal');
+
+  routeStore.setRouteHome(isPortalAccess || !isAdminLogin ? 'portal_overview' : 'home');
 
   const notFoundRoute: RouteKey = 'not-found';
   const isNotFoundRoute = to.name === notFoundRoute;
@@ -90,7 +101,7 @@ async function initRoute(to: RouteLocationNormalized): Promise<RouteLocationRaw 
     return location;
   }
 
-  const isLogin = Boolean(localStg.get('token'));
+  const isLogin = isAdminLogin;
 
   if (!isLogin) {
     // if the user is not logged in and the route is a constant route but not the "not-found" route, then it is allowed to access.
@@ -101,7 +112,7 @@ async function initRoute(to: RouteLocationNormalized): Promise<RouteLocationRaw 
     }
 
     // if the user is not logged in, then switch to the channel portal
-    const loginRoute: RouteKey = 'portal';
+    const loginRoute: RouteKey = 'portal-login';
     const query = getRouteQueryOfLoginRoute(to, routeStore.routeHome);
 
     const location: RouteLocationRaw = {
